@@ -1,0 +1,16 @@
+{
+  "name": "lru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lru_cache.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}

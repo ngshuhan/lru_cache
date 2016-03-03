@@ -33,7 +33,6 @@ describe('LruCache',function() {
 		});
 		it("should remove the oldest item when the cache is full",function() {
 			cache.put("susanna",24);
-			console.log(cache);
 			expect(cache.pairs).to.deep.equal({"john":26,"angela":24,"mike":35,"wen":15,"susanna":24});
 		})
 	});
@@ -54,6 +53,17 @@ describe('LruCache',function() {
 		})
 		it("should return undefine if the key is not found in the cache",function() {
 			expect(cache.get("hannah")).to.be.undefine;
+		})
+	});
+	describe("#removeAll",function() {
+		
+		it("should remove all key value pairs",function() {
+			cache.removeAll();
+			expect(cache.pairs).to.be.empty;
+
+		});
+		it("should remove all keys in the key array ",function() {
+			expect(cache.keys).to.be.empty;
 		})
 	})
 

@@ -42,8 +42,18 @@ describe('LruCache',function() {
 			expect(cache.remove("mike")).to.equal(35);
 		})
 		it("should return undefine if it does not exists in the cache",function() {
-			expect(cache.remove("hannah")).to.equal(35);
-
+			expect(cache.remove("hannah")).to.be.undefine;
+		})
+	}); 
+	describe("#get",function() {
+		it("should return its associated value from the cache if it exists",function() {
+			expect(cache.get("angela")).to.equal(24);
+		})
+		it("should register the recent use into the cache",function() {
+			expect(cache.pairs).to.deep.equal({"john":26,"wen":15,"susanna":24,"angela":24});
+		})
+		it("should return undefine if the key is not found in the cache",function() {
+			expect(cache.get("hannah")).to.be.undefine;
 		})
 	})
 

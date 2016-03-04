@@ -1,18 +1,6 @@
 
 import java.util.*;
 
-class Node<T,U> {
-	Node<T,U> prev;
-	Node<T,U> next;
-	T key;
-	U value;
-
-	public Node(T key, U value) {
-		this.key = key;
-		this.value = value;
-	}
-
-}
 
 public class LRUCache<K,V> {
 	private int limit;
@@ -20,14 +8,27 @@ public class LRUCache<K,V> {
 	private Node<K,V> lru;
 	private Node<K,V> mru;
 
-	public LRUCache(int limit) {
-		this.limit = limit;
-		cache = new HashMap<T,Node<K,V>>();
+	class Node<K,V> {
+		Node<K,V> prev;
+		Node<K,V> next;
+		K key;
+		V value;
+
+		public Node(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+
 	}
 
-	public void put(T key, V value) {
+	public LRUCache(int limit) {
+		this.limit = limit;
+		cache = new HashMap<K,Node<K,V>>();
+	}
 
-		if (cache.size == limit) { //if the cache is full
+	public void put(K key, V value) {
+
+		if (cache.size() == limit) { //if the cache is full
 			cache.remove(lru.key);
 			lru = lru.next;
 			lru.prev = null;
@@ -40,7 +41,7 @@ public class LRUCache<K,V> {
 	}
 
 	public V get(K key) {
-		Node nodeToMove = cache.get(key);
+		Node<K,V> nodeToMove = cache.get(key);
 		if (nodeToMove == null) {
 			return null;
 		} 
@@ -48,18 +49,18 @@ public class LRUCache<K,V> {
 			return mru.value;
 		}
 
-		Node nextNode = nodeToMove.next;
+		Node<K,V> nextNode = nodeToMove.next;
 		nodeToMove.prev.next = nextNode;
 		nextNode.prev = nodeToMove.prev;
 		nodeToMove.prev = mru;
 		mru.next = nodeToMove;
-		mru = nextToMove;
+		mru = nodeToMove;
 		mru.next = null;
 		return nodeToMove.value;
 	}
 
-	public void remove(T key) {
-		Node nodeToRemove = cache.get(key);
+	public V remove(K key) {
+		Node<K,V> nodeToRemove = cache.get(key);
 		if (nodeToRemove == null) {
 			return null;
 		}
@@ -73,17 +74,6 @@ public class LRUCache<K,V> {
 		lru = null;
 		mru = null;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

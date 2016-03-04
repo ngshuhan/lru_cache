@@ -1,5 +1,5 @@
 # LRU Caching
-This is a simple implementation of LRU (Least Recent Used) Algorithm with Javascript. The data structure is also tested with mocha in browser. 
+This is a simple implementation of LRU (Least Recent Used) Algorithm with Javascript. The data structure is also tested with mocha in browser.  (Just updated the JAVA version, but have not done the unit test)
 
 **Unit Test**
 ![screen shot 2016-03-02 at 11 13 57 pm](https://cloud.githubusercontent.com/assets/15684513/13487166/8310064a-e0cc-11e5-9351-2c1faab90eb8.png)
